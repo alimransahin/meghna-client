@@ -9,11 +9,16 @@ const Banner = () => {
     }, [])
     return (
         <div>
-            <div className="carousel w-full max-h-96	">
+            <div className="carousel w-full max-h-96">
                 {
                     bannerItems.map(bannerItem => <div
                         key={bannerItem._id} id={bannerItem._id} className="carousel-item w-full">
-                        <img src={bannerItem.img} className="w-full " alt={bannerItem.title} />
+                        <div className="card w-full bg-base-100 image-full">
+                            <figure><img src={bannerItem.img} alt="Img" className='w-full' /></figure>
+                            <div className="card-body ">
+                                <h2 className="card-title text-center">{bannerItem.title}</h2>
+                            </div>
+                        </div>
                     </div>
                     )
                 }
