@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SingleService from '../../Shared/SingleService/SingleService';
+import { Link } from 'react-router-dom';
 
 const ServicesHome = () => {
     const [services, setServices] = useState([]);
@@ -18,6 +19,9 @@ const ServicesHome = () => {
                     ></SingleService>)
                 }
 
+            </div>
+            <div className="text-end">
+                <Link to='/services' className="btn my-4">See All  </Link>
             </div>
         </div>
     );
