@@ -6,7 +6,7 @@ const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { user, loading } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/my-reviews?email=${user?.email}`)
+        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email]);
@@ -14,7 +14,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to delete this review?');
         if (proceed) {
-            fetch(`http://localhost:5000/my-reviews/${id}`, {
+            fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews/${id}`, {
                 method: 'DELETE',
                 headers: {
                     // authorization: `Bearer ${localStorage.getItem('genius-token')}`

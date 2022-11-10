@@ -10,7 +10,7 @@ const ServicesDetails = () => {
     const location = useLocation();
     const [reviews,setReviews]=useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/review/${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [_id]);
@@ -27,7 +27,7 @@ const ServicesDetails = () => {
             img: user.photoURL ? user.photoURL : 'https://freesvg.org/img/abstract-user-flat-3.png',
             email: user.email
         }
-        fetch('http://localhost:5000/review', {
+        fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -14,6 +14,8 @@ const Header = () => {
                 :
                 ''
         }
+
+        <li><Link to='/blog'>Blog</Link></li>
     </>
 
     const handleSignOut = () => {
