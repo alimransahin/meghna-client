@@ -19,16 +19,32 @@ const SignIn = () => {
         signInUser(email, password)
             .then(result => {
                 setError('');
+                const currentUser={
+                    email:result.user.email
+                }
+                //jwt
+            fetch('http://localhost:5000/jwt',{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                localStorage.setItem('secret_token',data.token);
                 navigate(from, { replace: true })
-            })
-            .catch(err => {
-                setError(err);
-            })
+            });
+        })
+        .catch(err=>{
+            setError(err);
+        })
     }
     const handleGoogle = ()=>{
         googleSignIn(googleProvider)
         .then(result=>{
-            setError('');
+            setError('')
             navigate(from, { replace: true })
         })
         .catch(err=>{

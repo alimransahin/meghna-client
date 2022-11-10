@@ -15,7 +15,7 @@ const AddServices = () => {
             price: price
         };
         console.log(addService);
-        fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/services', {
+        fetch('http://localhost:5000/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,9 +31,9 @@ const AddServices = () => {
     }
     return (
         <div className="hero bg-base-200">
-            <div className="card w-full max-w-md m-16 shadow-2xl bg-base-100">
+            <div className="card w-full max-w-xl m-16 shadow-2xl bg-base-100">
                 <form onSubmit={handleSubmit} className="card-body">
-                    <h1 className="text-5xl font-bold">Sign In now!</h1>
+                    <h1 className="text-5xl font-bold">Add Service</h1>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Title</span>
@@ -69,8 +69,3 @@ const AddServices = () => {
 };
 
 export default AddServices;
-
-
-/**
-NBbzjZ4xLZ3rVemA
- */

@@ -33,6 +33,7 @@ const AuthProvider = ({ children }) => {
 
     const signOutUser = () => {
         setLoading(true);
+        localStorage.removeItem('secret_token');
         return signOut(auth);
     }
     const googleSignIn = (provider) => {
@@ -40,7 +41,7 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider);
     }
 
-    const authInfo = { createUser, signInUser, signOutUser, googleSignIn, user, loading, error, setError }
+    const authInfo = { createUser, signInUser, signOutUser, googleSignIn, user, loading, error, setError, setLoading }
 
     return (
         <AuthContext.Provider value={authInfo}>

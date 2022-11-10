@@ -4,20 +4,29 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading, signOutUser } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/my-reviews?email=${user?.email}`,{
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('secret_token')}`
+            }
+        })
+            .then(res => {
+                if(res.status===401||res.status===403){
+                    signOutUser()
+                }
+               return res.json()
+            })
             .then(data => setReviews(data))
-    }, [user?.email]);
+    }, [user?.email, signOutUser]);
 
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to delete this review?');
         if (proceed) {
-            fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews/${id}`, {
+            fetch(`http://localhost:5000/my-reviews/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    // authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                    authorization: `Bearer ${localStorage.getItem('secret_token')}`
                 }
             })
                 .then(res => res.json())
@@ -29,6 +38,9 @@ const MyReviews = () => {
                     }
                 })
         }
+    }
+    if (loading){
+        return <div className="radial-progress text-primary text-center" style={{ "--value": 70 }}></div>
     }
     return (
         <div className='min-h-96'>

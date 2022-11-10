@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
             {
                 path:'/services/:id',
                 element:<ServicesDetails></ServicesDetails>,
-                loader: ({ params }) => fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/services/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path:'/signin',

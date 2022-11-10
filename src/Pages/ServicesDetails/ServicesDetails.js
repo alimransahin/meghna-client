@@ -4,13 +4,16 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const ServicesDetails = () => {
     const service = useLoaderData();
-    console.log(service);
     const { _id, img, price, title, description } = service;
     const { user } = useContext(AuthContext);
     const location = useLocation();
     const [reviews,setReviews]=useState([]);
     useEffect(() => {
-        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/review/${_id}`)
+        fetch(`http://localhost:5000/review/${_id}`,{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('secret_token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [_id]);
@@ -27,10 +30,12 @@ const ServicesDetails = () => {
             img: user.photoURL ? user.photoURL : 'https://freesvg.org/img/abstract-user-flat-3.png',
             email: user.email
         }
-        fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/review', {
+        fetch('http://localhost:5000/review', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('secret_token')}`
+               
             },
             body: JSON.stringify(review)
         })
