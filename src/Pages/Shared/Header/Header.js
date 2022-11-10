@@ -6,6 +6,7 @@ const Header = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const menu = <>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/services'>All Services</Link></li>
         {
             user?.uid ?
                 <><li><Link to='/my-reviews'>My Reviews</Link></li>

@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const ServicesDetails = () => {
     const service = useLoaderData();
+    console.log(service);
     const { _id, img, price, title, description } = service;
     const { user } = useContext(AuthContext);
     const location = useLocation();
@@ -33,7 +34,11 @@ const ServicesDetails = () => {
             },
             body: JSON.stringify(review)
         })
-            .then(event.target.reset())
+            .then(()=>{
+                event.target.reset();
+                alert('Your Review Added');
+            }
+                )
             .catch(err => console.error(err))
     }
 
