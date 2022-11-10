@@ -12,9 +12,8 @@ const SignUp = () => {
         const email=form.email.value;
         const password=form.password.value;
         createUser(email,password)
-        .then(result=>console.log(result.user))
+        .then(result=>{})
         .catch(err=>console.error(err));
-        console.log(email,name, photoUrl,password);
         
     }
     return (

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -7,20 +7,33 @@ const ServicesDetails = () => {
     const { _id, img, price, title, description } = service;
     const { user } = useContext(AuthContext);
     const location = useLocation();
+    const [reviews,setReviews]=useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/review/${_id}`)
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [_id]);
+    
 
-    const handleSubmit=event=>{
+    const handleSubmit = event => {
         event.preventDefault();
-        const text=event.target.text.value;
-        console.log(text);
-
-        const review={
+        const text = event.target.text.value;
+        const review = {
             service: _id,
-            text:text,
-            author: user.displayName ? user.displayName :"No name",
+            text: text,
+            author: user.displayName ? user.displayName : "No name",
             img: user.photoURL ? user.photoURL : 'https://freesvg.org/img/abstract-user-flat-3.png',
             email: user.email
         }
-        console.log(review);
+        fetch('http://localhost:5000/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(event.target.reset())
+            .catch(err => console.error(err))
     }
 
     return (
@@ -39,7 +52,22 @@ const ServicesDetails = () => {
             </div>
             <div className="text-center w-full">
                 <h1 className="text-4xl font-bold bg-amber-200 my-4 rounded-xl text-center py-3">Reviews</h1>
+                
                 {
+                    reviews.map(review => <div className='mb-4' key={review._id}>
+                        <div className=" card-side bg-base-100 shadow-xl">
+                            <div className='card flex-row'>
+                            <figure><img className='w-12' src={review.img} alt="profile"/></figure>
+                                <h2 className="card-title">{review.author}</h2>
+                                
+                            </div>
+                                <p>{review.text}</p>
+                        </div>
+                    </div>)
+                }
+                {
+                    
+
                     user?.uid ?
                         <form onSubmit={handleSubmit}>
                             <textarea name='text' className="textarea textarea-warning w-full" placeholder="Add Your Review"></textarea>

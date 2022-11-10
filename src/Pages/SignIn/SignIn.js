@@ -28,7 +28,6 @@ const SignIn = () => {
     const handleGoogle = ()=>{
         googleSignIn(googleProvider)
         .then(result=>{
-            console.log(result.user);
             setError('');
             navigate(from, { replace: true })
         })
