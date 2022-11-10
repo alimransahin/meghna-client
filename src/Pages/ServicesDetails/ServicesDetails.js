@@ -34,6 +34,7 @@ const ServicesDetails = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+
                
             },
             body: JSON.stringify(review)

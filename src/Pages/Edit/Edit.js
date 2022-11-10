@@ -11,22 +11,7 @@ const Edit = () => {
         const review ={
             text:text,
             _id:_id
-        };
-        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/review/${_id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                    authorization: `Bearer ${localStorage.getItem('secret_token')}`
-               
-            },
-            body: JSON.stringify(review)
-        })
-            .then(()=>{
-                event.target.reset();
-                alert('Your Review Updated');
-            }
-                )
-            .catch(err => console.error(err))
+        }
     }
 
     return (
