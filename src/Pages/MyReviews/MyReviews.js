@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { user, loading, signOutUser } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/my-reviews?email=${user?.email}`,{
+        fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews?email=${user?.email}`,{
             headers:{
                 authorization:`Bearer ${localStorage.getItem('secret_token')}`
             }
@@ -23,7 +24,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure, you want to delete this review?');
         if (proceed) {
-            fetch(`http://localhost:5000/my-reviews/${id}`, {
+            fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('secret_token')}`
@@ -61,12 +62,12 @@ const MyReviews = () => {
                         </thead>
                         <tbody>
                             {
-                                reviews.map((review, index) => <tr key={index}>
+                                reviews.map((review, index) => <tr key={review._id}>
                                     <th className='p-4'>{index + 1}</th>
                                     <td className='p-4 font-bold'>{review.serviceName}</td>
                                     <td className='p-4'>{review.text}</td>
                                     <td className='p-4'>
-                                        <button className='text-2xl text-blue-700'><FaEdit></FaEdit></button>
+                                        <Link to={`/edit/${review._id}`} className='text-2xl text-blue-700'><FaEdit></FaEdit></Link>
                                         <button onClick={() => handleDelete(review._id)} className='text-2xl text-red-700'><FaTrash></FaTrash></button>
                                     </td>
                                 </tr>

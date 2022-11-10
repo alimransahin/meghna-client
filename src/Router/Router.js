@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import AddServices from "../Pages/AddServices/AddServices";
 import Blog from "../Pages/Blog/Blog";
+import Edit from "../Pages/Edit/Edit";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
 import MyReviews from "../Pages/MyReviews/MyReviews";
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
             {
                 path:'/services/:id',
                 element:<ServicesDetails></ServicesDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/services/${params.id}`)
             },
             {
                 path:'/signin',
@@ -48,6 +49,11 @@ export const router = createBrowserRouter([
             {
                 path:'/blog',
                 element:<Blog></Blog>
+            },
+            {
+                path:'/edit/:id',
+                element:<Edit></Edit>,
+                loader:({params})=>fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/edit/${params.id}`)
             }
         ]
     },

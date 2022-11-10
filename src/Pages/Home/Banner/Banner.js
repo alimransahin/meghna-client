@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const Banner = () => {
     const [bannerItems, setBannerItems] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/services')
             .then(res => res.json())
             .then(data => setBannerItems(data))
     }, [])

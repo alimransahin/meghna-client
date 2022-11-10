@@ -15,7 +15,7 @@ const AddServices = () => {
             price: price
         };
         console.log(addService);
-        fetch('http://localhost:5000/services', {
+        fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
