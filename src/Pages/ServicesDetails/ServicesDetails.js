@@ -20,6 +20,7 @@ const ServicesDetails = () => {
         const text = event.target.text.value;
         const review = {
             service: _id,
+            serviceName: title,
             text: text,
             author: user.displayName ? user.displayName : "No name",
             img: user.photoURL ? user.photoURL : 'https://freesvg.org/img/abstract-user-flat-3.png',

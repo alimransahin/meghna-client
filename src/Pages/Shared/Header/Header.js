@@ -9,7 +9,7 @@ const Header = () => {
         {
             user?.uid ?
                 <><li><Link to='/my-reviews'>My Reviews</Link></li>
-                    <li><Link to='/add-reviews'>Add Service</Link></li></>
+                    <li><Link to='/add-service'>Add Service</Link></li></>
                 :
                 ''
         }
