@@ -2,6 +2,28 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Live Web site
+https://meghna-tourist-service.web.app/
+# Fetchers:
+1. load services with limit in home page.
+2. load all services in services page.
+3. load reviews with service related.
+4. load all review with user related.
+5. user can add reviews.
+6. user can add services.
+7. user can reviews deleted.
+8. user Can reviews updated.
+
+elements:
+1. react
+2. react-router-dom
+3. tailwind css.
+4. firebase authentication.
+5. dot env.
+6. node express.
+7. cors.
+8. mongodb 
+
 ## Available Scripts
 
 In the project directory, you can run:
