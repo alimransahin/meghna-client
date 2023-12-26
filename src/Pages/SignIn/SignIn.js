@@ -93,11 +93,11 @@ const SignIn = () => {
                             
                         </div>
                     <label className="label ">
-                         <Link to='/signup' className="text-md">You are new? Sign Up here.</Link> 
+                         <Link to='/signup' className="text-md">Are you new? <span className='underline text-blue-700'> Sign Up here.</span></Link> 
                     </label>
                     </form>
                     
-                        <button onClick={handleGoogle} className="btn bg-green-500 btn-outline mb-8 mx-8"><FaGoogle/> Sign In by Google</button>
+                      <button onClick={handleGoogle} className="btn bg-green-500 btn-outline mb-8 mx-8"><FaGoogle/> Sign In by Google</button>
                     
                 </div>
             </div>

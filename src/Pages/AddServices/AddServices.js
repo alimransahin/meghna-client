@@ -60,7 +60,7 @@ const AddServices = () => {
                         <input type="text" name='price' placeholder="Price" className="input input-bordered" />
                     </div>
                     <div className="form-control mt-6">
-                        <input className="btn btn-primary" type="submit" value="Sign In" />
+                        <input className="btn btn-primary" type="submit" value="Submit" />
                     </div>
                 </form>
             </div>

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { user, loading, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
+    const {loading, setLoading}=useState(true);
     useEffect(() => {
         fetch(`https://meghna-tourist-service-server-alimransahin.vercel.app/my-reviews?email=${user?.email}`,{
             headers:{
@@ -18,7 +19,7 @@ const MyReviews = () => {
                 }
                return res.json()
             })
-            .then(data => setReviews(data))
+            .then(data => {setReviews(data);})
     }, [user?.email, signOutUser]);
 
     const handleDelete = (id) => {
@@ -36,12 +37,19 @@ const MyReviews = () => {
                         alert('Review deleted successfully');
                         const remaining = reviews.filter(review => review._id !== id);
                         setReviews(remaining);
+                        setLoading(false);
                     }
                 })
         }
     }
-    if (loading){
-        return <div className="radial-progress text-primary text-center" style={{ "--value": 70 }}></div>
+  if (loading) {
+        return <div className='text-center'>
+        <button type="button" disabled>
+            <img src="http://i.ibb.co/HxzcfmF/Rolling-1-5s-71px.gif" alt="" />
+            Processing...
+        </button>
+        </div>
+
     }
     return (
         <div className='min-h-96'>

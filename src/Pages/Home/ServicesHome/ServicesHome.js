@@ -11,7 +11,7 @@ const ServicesHome = () => {
     }, [])
     return (
         <div className='my-8'>
-            <h2 className='text-4xl font-semibold text-center mb-4 p-4 border-4 border-indigo-200 border-b-indigo-500' >Services</h2>
+            <h2 className='text-4xl font-semibold text-center mb-4 p-4  drop-shadow-lg shadow-lg bg-base-200 rounded-lg' >Services</h2>
             <div className=" grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                 {
                     services.map(service => <SingleService

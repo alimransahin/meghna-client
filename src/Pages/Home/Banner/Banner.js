@@ -5,7 +5,7 @@ const Banner = () => {
     useEffect(() => {
         fetch('https://meghna-tourist-service-server-alimransahin.vercel.app/services')
             .then(res => res.json())
-            .then(data => setBannerItems(data))
+            .then(data => setBannerItems(data.slice(0, 4)))
     }, [])
     return (
         <div>
